@@ -30,5 +30,5 @@ PUT /jokes/:id
 
 ### Delete a proverbs
 
-git clone https://github.com/yourusername/afghan-proverbs-api.git
+git clone https://github.com/somayaataee/afghan-proverbs-api.git
 cd afghan-proverbs-api
