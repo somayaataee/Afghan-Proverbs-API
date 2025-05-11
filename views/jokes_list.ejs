@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>لیست جوک‌ها</title>
+ 
+</head>
+<body>
+  <div class="body-list">
+    <% if (jokes.length === 0) { %>
+      <p style="color: red; text-align: center;">هیچ جوکی پیدا نشد! 😢</p>
+    <% } else { %>
+      <% jokes.forEach(joke => { %>
+        <div class="joke-box">
+          <p><strong>کتگوری : </strong>   <%= joke.category %></p>
+          <p><strong> فارسی : </strong>  <%= joke.textDari %></p>
+          <p><strong> پشتو : </strong>   <%= joke.textPashto %></p>
+          <p><strong>انگلیسی : </strong> <%= joke.translationEn %></p>
+  
+          <a href="/jokes/<%= joke.id %>/edit"><button>ویرایش</button></a>
+          <form action="/jokes/<%= joke.id %>?_method=DELETE" method="POST" style="display:inline;">
+            <button type="submit">حذف</button>
+          </form>
+        </div>
+      <% }) %>
+    <% } %>
+  
+    <a href="/"><button class="btn" type="submit">رفتن به صفحه اصلی</button></a>
+  
+  </div>
+</body>
+</html>

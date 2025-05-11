@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "textDari": "زمان بهترین داور است",
+    "textPashto": "وخت تر ټولو ښه قاضي دی",
+    "translationEn": "Time is the best judge",
+    "meaning": "صبر کن، حقیقت خودش آشکار خواهد شد.",
+    "category": "نصیحت"
+  },
+  {
+    "id": 2,
+    "textDari": "آنچه را که برای خود نمی‌پسندی، برای دیگران هم مپسند",
+    "textPashto": "څه چې ځان ته نه خوښوي، بل ته یې مه غواړه",
+    "translationEn": "Don't wish for others what you wouldn't want for yourself",
+    "meaning": "dds",
+    "category": "نصیحت"
+  },
+  {
+    "id": 3,
+    "textDari": "زمان، بهترین داور است ",
+    "textPashto": "وخت تر ټولو ښه قاضي دی",
+    "translationEn": " Time is the best judge",
+    "meaning": "صبر کن، حقیقت خودش آشکار خواهد شد.",
+    "category": "نصیحت"
+  },
+  {
+    "id": 4,
+    "textDari": "سالی که نکوست، از بهارش پیداست",
+    "textPashto": "ښه کال د پسرلي نه پېژندل کېږي",
+    "translationEn": "A good year is known by its spring",
+    "meaning": "از اول کار می‌شود فهمید که آخرش چطور می‌شود",
+    "category": "سرگرمی"
+  },
+  {
+    "id": 5,
+    "textDari": "دیگ به دیگ می‌گوید رویت سیاه!",
+    "textPashto": "کاسې کاسې ته وایي، ته تور مخې",
+    "translationEn": "The pot calls the kettle black",
+    "meaning": "کسی که خودش مشکل دارد، به دیگران ایراد می‌گیرد",
+    "category": "سرگرمی"
+  }
+]
