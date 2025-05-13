@@ -87,7 +87,8 @@ curl http://localhost:3000/jokes
 
 ---
 ### Add a new proverb
-POST /submit
+## POST /submit
+---
 {
     "id": 1,
     "textDari": "دیگ به دیگ می‌گوید رویت سیاه!",
