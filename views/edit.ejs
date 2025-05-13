@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <title>ویرایش جوک</title>
+</head>
+<body>
+  
+  <div class="edit-form">
+    <h1>ویرایش جوک</h1>
+    <form action="/jokes/<%= joke.id %>?_method=PATCH" method="POST">
+      <label>کتگوری:</label><br>
+      <input type="text" name="category" value="<%= joke.category %>" required><br><br>
+  
+      <label>متن فارسی:</label><br>
+      <textarea name="textDari" required><%= joke.textDari %></textarea><br><br>
+  
+      <label>متن پشتو:</label><br>
+      <textarea name="textPashto" required><%= joke.textPashto %></textarea><br><br>
+  
+      <label>ترجمه انگلیسی:</label><br>
+      <textarea name="translationEn" required><%= joke.translationEn %></textarea><br><br>
+  
+      <label>مفهوم:</label><br>
+      <textarea name="meaning" required><%= joke.meaning %></textarea><br><br>
+  
+      <button  class="btn" type="submit">ذخیره تغییرات</button>
+    </form>
+  
+    <br>
+    <a href="/jokes"><button class="btn">بازگشت به لیست</button></a>
+  </div>
+  
+</body>
+</html>
