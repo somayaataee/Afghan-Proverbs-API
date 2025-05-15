@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "textDari": "نه سیخ بسوزه، نه کباب!",
+    "textPashto": "نه سیخ وسوزی، نه کباب",
+    "translationEn": "Neither the skewer burns, nor the kebab",
+    "meaning": "تلاش برای آشتی دادن یا حفظ تعادل بین دو طرف",
+    "category": "نصیحت"
+  },
+  {
+    "id": 2,
+    "textDari": "کسی که خواب است، می‌شود بیدارش کرد؛ ولی کسی که خودش را به خواب زده، نه!",
+    "textPashto": "چا چې سترګې پټې کړې وې، هغه نه شي راويښولی",
+    "translationEn": "You can wake someone who is asleep, but not someone pretending to sleep",
+    "meaning": "با کسی که خودش را به نفهمی زده، نمی‌شود بحث منطقی کرد",
+    "category": "نصیحت"
+  },
+  {
+    "id": 3,
+    "textDari": "شتر در خواب بیند پنبه دانه!",
+    "textPashto": "اوښ په خوب کې د پنبې دانې ویني",
+    "translationEn": "The camel dreams of cotton seeds",
+    "meaning": "آدم‌های خیال‌پرداز که آرزوهای بزرگ اما غیرواقعی دارند",
+    "category": "طنز"
+  },
+  {
+    "id": 4,
+    "textDari": "هر گلی بوی خود دارد!",
+    "textPashto": "هر ګل خپل بوی لري",
+    "translationEn": "Every flower has its own scent",
+    "meaning": "هر کسی ویژگی خاص خودش را دارد",
+    "category": "سرگرمی"
+  },
+  {
+    "id": 5,
+    "textDari": "مرغی که صبح خیزد، دانه‌اش را پیدا کند",
+    "textPashto": "چرګ چې سهار وخیژي، خپله دانه پیدا کوي",
+    "translationEn": "The early bird finds its grain",
+    "meaning": "کسانی که زود شروع کنند، موفق‌تر خواهند بود",
+    "category": "نصیحت"
+  },
+  {
+    "id": 6,
+    "textDari": "کل به کله می‌خندد!",
+    "textPashto": "ګنجی بل ګنجی ته خاندي",
+    "translationEn": "The bald laughs at the bald",
+    "meaning": "کسی که خودش همان عیب را دارد، دیگران را مسخره می‌کند",
+    "category": "طنز"
+  }
+]
