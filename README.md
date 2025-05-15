@@ -44,43 +44,51 @@ curl http://localhost:3000/jokes
 [
   {
     "id": 1,
-    "textDari": "زمان بهترین داور است",
-    "textPashto": "وخت تر ټولو ښه قاضي دی",
-    "translationEn": "Time is the best judge",
-    "meaning": "صبر کن، حقیقت خودش آشکار خواهد شد.",
+    "textDari": "نه سیخ بسوزه، نه کباب!",
+    "textPashto": "نه سیخ وسوزی، نه کباب",
+    "translationEn": "Neither the skewer burns, nor the kebab",
+    "meaning": "تلاش برای آشتی دادن یا حفظ تعادل بین دو طرف",
     "category": "نصیحت"
   },
   {
     "id": 2,
-    "textDari": "آنچه را که برای خود نمی‌پسندی، برای دیگران هم مپسند",
-    "textPashto": "څه چې ځان ته نه خوښوي، بل ته یې مه غواړه",
-    "translationEn": "Don't wish for others what you wouldn't want for yourself",
-    "meaning": "dds",
+    "textDari": "کسی که خواب است، می‌شود بیدارش کرد؛ ولی کسی که خودش را به خواب زده، نه!",
+    "textPashto": "چا چې سترګې پټې کړې وې، هغه نه شي راويښولی",
+    "translationEn": "You can wake someone who is asleep, but not someone pretending to sleep",
+    "meaning": "با کسی که خودش را به نفهمی زده، نمی‌شود بحث منطقی کرد",
     "category": "نصیحت"
   },
   {
     "id": 3,
-    "textDari": "زمان، بهترین داور است ",
-    "textPashto": "وخت تر ټولو ښه قاضي دی",
-    "translationEn": " Time is the best judge",
-    "meaning": "صبر کن، حقیقت خودش آشکار خواهد شد.",
-    "category": "نصیحت"
+    "textDari": "شتر در خواب بیند پنبه دانه!",
+    "textPashto": "اوښ په خوب کې د پنبې دانې ویني",
+    "translationEn": "The camel dreams of cotton seeds",
+    "meaning": "آدم‌های خیال‌پرداز که آرزوهای بزرگ اما غیرواقعی دارند",
+    "category": "طنز"
   },
   {
     "id": 4,
-    "textDari": "سالی که نکوست، از بهارش پیداست",
-    "textPashto": "ښه کال د پسرلي نه پېژندل کېږي",
-    "translationEn": "A good year is known by its spring",
-    "meaning": "از اول کار می‌شود فهمید که آخرش چطور می‌شود",
+    "textDari": "هر گلی بوی خود دارد!",
+    "textPashto": "هر ګل خپل بوی لري",
+    "translationEn": "Every flower has its own scent",
+    "meaning": "هر کسی ویژگی خاص خودش را دارد",
     "category": "سرگرمی"
   },
   {
     "id": 5,
-    "textDari": "دیگ به دیگ می‌گوید رویت سیاه!",
-    "textPashto": "کاسې کاسې ته وایي، ته تور مخې",
-    "translationEn": "The pot calls the kettle black",
-    "meaning": "کسی که خودش مشکل دارد، به دیگران ایراد می‌گیرد",
-    "category": "سرگرمی"
+    "textDari": "مرغی که صبح خیزد، دانه‌اش را پیدا کند",
+    "textPashto": "چرګ چې سهار وخیژي، خپله دانه پیدا کوي",
+    "translationEn": "The early bird finds its grain",
+    "meaning": "کسانی که زود شروع کنند، موفق‌تر خواهند بود",
+    "category": "نصیحت"
+  },
+  {
+    "id": 6,
+    "textDari": "کل به کله می‌خندد!",
+    "textPashto": "ګنجی بل ګنجی ته خاندي",
+    "translationEn": "The bald laughs at the bald",
+    "meaning": "کسی که خودش همان عیب را دارد، دیگران را مسخره می‌کند",
+    "category": "طنز"
   }
 ]
 ```

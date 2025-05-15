@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -6,123 +6,114 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const router = Router();
-const jokesDataPath = path.join(__dirname, '../jokesData.json');
+const router = express.Router();
+const proverbsFilePath = path.join(__dirname, '../proverbsData.json');
 
-if (!fs.existsSync(jokesDataPath)) {
-  const initialData = [];
-  fs.writeFileSync(jokesDataPath, JSON.stringify(initialData, null, 2), 'utf-8');
+let proverbsData = [];
+try {
+  const data = fs.readFileSync(proverbsFilePath, 'utf8');
+  proverbsData = JSON.parse(data);
+
+} catch (err) {
+  console.error('Error reading proverbs.json:', err);
 }
 
-function loadJokes() {
-  try {
-    const data = fs.readFileSync(jokesDataPath, 'utf-8');
-    return JSON.parse(data);
-  } catch (err) {
-    console.error('Error reading jokes file:', err);
-    return [];
-  }
-}
-
-//save
-function updateJokeFile(data) {
-  fs.writeFileSync(jokesDataPath, JSON.stringify(data, null, 2), 'utf-8');
-}
-
-//submit jokes
-router.post('/submit', (req, res) => {
-  const jokesData = loadJokes();
-  const { category, textDari, textPashto, translationEn, meaning } = req.body;
-  const maxId = jokesData.reduce((max, joke) => (joke.id > max ? joke.id : max), 0);
-
-  const newJoke = {
-    id: maxId + 1,
-    category,
-    textDari,
-    textPashto,
-    translationEn,
-    meaning,
-  };
-
-  jokesData.push(newJoke);
-  updateJokeFile(jokesData);
-
-  res.render('success', {
-    successMessage: 'جوک موفقانه ثبت شد!',
-    category: category,
-  });
-});
-
-//remove jokes
-router.delete('/:id', (req, res) => {
-  const jokesData = loadJokes();
-  const jokeId = parseInt(req.params.id);
-  const index = jokesData.findIndex(joke => joke.id === jokeId);
-
-  if (index === -1) {
-    return res.status(404).send('جوک یافت نشد!');
-  }
-  jokesData.splice(index, 1);
-  updateJokeFile(jokesData);
-  res.redirect('/jokes?deleted=true');
-});
-
-
-
-//update jokes
-router.patch('/:id', (req, res) => {
-  const jokesData = loadJokes(); 
-  const jokeId = parseInt(req.params.id);
-  const updatedFields = req.body;
-
-  const index = jokesData.findIndex(joke => joke.id === jokeId);
-  if (index === -1) {
-    return res.status(404).json({ message: 'جوک یافت نشد!' });
-  }
-
-  jokesData[index] = { ...jokesData[index], ...updatedFields };
-  updateJokeFile(jokesData);
-  res.redirect('/jokes?updated=true');
-});
-
-//find jokes
-router.get('/:id', (req, res) => {
-  console.log('Request received for joke id:', req.params.id);
-
-  const jokesData = loadJokes();
-  const jokeId = parseInt(req.params.id);
-  const joke = jokesData.find(joke => joke.id === jokeId);
-
-  if (joke) {
-    return res.json(joke);
-  }
-  return res.status(404).json({ message: 'جوک یافت نشد!' });
-});
-
-//edit jokes
-router.get('/:id/edit', (req, res) => {
-  const jokesData = loadJokes();
-  const jokeId = parseInt(req.params.id);
-  const joke = jokesData.find(joke => joke.id === jokeId);
-
-  if (!joke) {
-    return res.status(404).send('جوک پیدا نشد!');
-  }
-  res.render('edit', { joke });
-});
-
-//route handling --important
+//filter proverbs 
 router.get('/', (req, res) => {
-  res.render('index.html');
+    console.log('Current proverbsData:', proverbsData);
+  const category = req.query.category;
+  if (!category) {
+    return res.json(proverbsData);
+  }
+  const filtered = proverbsData.filter(p => p.category === category);
+  if (filtered.length === 0) {
+    return res.status(404).json({ message: 'ضرب المثل با این کتگوری یافت نشد!' });
+  }
+  res.json(filtered);
 });
 
-//joke list
-router.get('/jokes', (req, res) => {
-  const jokesData = loadJokes();
-  res.render('jokes_list', { jokes: jokesData });
+//random proverbs
+router.get('/random', (req, res) => {
+  if (proverbsData.length === 0) {
+    return res.status(404).json({ message: 'هیچ ضرب المثلی یافت نشد!' });
+  }
+  const idx = Math.floor(Math.random() * proverbsData.length);
+  res.json(proverbsData[idx]);
 });
 
+// get proverbs by id
+router.get('/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  if (isNaN(id)) {
+    return res.status(400).json({ message: 'لطفا یک عدد را وارد کنید.' });
+  }
+  const proverb = proverbsData.find(p => p.id === id);
+  if (!proverb) return res.status(404).json({ message: 'ضرب المثل یافت نشد!' });
+  res.json(proverb);
+});
+
+// Add new proverbs
+router.post('/', (req, res) => {
+  const { textDari, textPashto, translationEn, meaning, category } = req.body;
+  if (!textDari || !textPashto || !translationEn || !meaning || !category) {
+    return res.status(400).json({ message: 'لطفاً همه فیلدها را وارد کنید.' });
+  }
+  const maxId = proverbsData.reduce((max, p) => (p.id > max ? p.id : max), 0);
+  const newProverb = { id: maxId + 1, textDari, textPashto, translationEn, meaning, category };
+  proverbsData.push(newProverb);
+  updateProverbsFile(proverbsData);
+  res.status(201).json({ message: 'ضرب المثل  موفقانه ثبت گردید', proverb: newProverb });
+});
+
+//put proverbs by id
+router.put('/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = proverbsData.findIndex(p => p.id === id);
+  if (index === -1) return res.status(404).json({ message: 'ضرب المثل یافت نشد!' });
+
+  const { textDari, textPashto, translationEn, meaning, category } = req.body;
+  if (!textDari || !textPashto || !translationEn || !meaning || !category) {
+    return res.status(400).json({ message: 'لطفاً همه فیلدها را وارد کنید.' });
+  }
+
+  proverbsData[index] = { id, textDari, textPashto, translationEn, meaning, category };
+  updateProverbsFile(proverbsData);
+  res.json({ message: 'ضرب المثل موفقانه آپدیت شد!', proverb: proverbsData[index] });
+});
+
+// patch proverbs
+router.patch('/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = proverbsData.findIndex(p => p.id === id);
+  if (index === -1) return res.status(404).json({ message: 'ضرب المثل یافت نشد!' });
+
+  proverbsData[index] = { ...proverbsData[index], ...req.body };
+  updateProverbsFile(proverbsData);
+  res.json({ message: 'ضرب المثل موفقانه آپدیت شد!', proverb: proverbsData[index] });
+});
+
+//Delete proverbs by id
+router.delete('/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = proverbsData.findIndex(p => p.id === id);
+  if (index === -1) return res.status(404).json({ message: 'ضرب المثل یافت نشد!' });
+
+  const deleted = proverbsData.splice(index, 1)[0];
+  updateProverbsFile(proverbsData);
+  res.json({ message: 'ضرب المثل موفقانه حذف شد!', proverb: deleted });
+});
+
+//Delete all proverbs
+router.delete('/', (req, res) => {
+  updateProverbsFile(proverbsData);
+  res.json({ message: 'تمام ضرب المثل ها موفقانه حذف شدند!' });
+});
+
+function updateProverbsFile(data) {
+  try {
+    fs.writeFileSync(proverbsFilePath, JSON.stringify(data, null, 2));
+  } catch (err) {
+    console.error('Error writing to proverbs.json:', err);
+  }
+}
 export default router;
-
-
-

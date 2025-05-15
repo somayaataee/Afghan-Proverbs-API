@@ -1,24 +1,12 @@
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import jokesRouter from './routes/proverbs.js';
-import methodOverride from 'method-override';
-import bodyParser from 'body-parser';
-
+import proverbsRouter from './routes/proverbs.js';
 
 const app = express();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const PORT = 3000;
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(methodOverride('_method'));
+app.use(express.json()); 
+app.use('/proverbs', proverbsRouter);
 
-app.use('/jokes', jokesRouter);
-
-app.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
+app.listen(PORT, () => {
+  console.log(` ✅ Server running on http://localhost:${PORT}`);
 });
